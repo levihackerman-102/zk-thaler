@@ -13,7 +13,7 @@ def chi_w(w, r):
     return reduce(lambda acc, pair: acc * chi_step(*pair), zip(w, r), 1)
     
 def naive_mle(fw, r, p):
-    assert(len(r) == sqrt(len(fw)))
+    assert(len(fw) == 2**len(r))
     return sum(val * chi_w(i_to_idx(i, len(r)), r) for i, val in enumerate(fw)) % p
 
 def recurse(fw, r, n):
@@ -45,4 +45,4 @@ if __name__ == '__main__':
     assert(naive_mle([1,2,1,4],[0,2],5) == 3)
     assert(stream_mle([1,2,1,4],[0,2],5) == 3)    
     assert(dynamic_mle([1,2,1,4],[0,2],5) == 3)    
-    
+    # print(naive_mle([1,2,3,4,5,6,7,8],[2,4,6],11))
